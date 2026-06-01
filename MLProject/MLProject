@@ -1,5 +1,5 @@
 
-name: iris-classification
+name: breast-cancer-classification
 
 conda_env: conda.yaml
 
