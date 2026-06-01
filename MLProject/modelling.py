@@ -33,22 +33,20 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 mlflow.sklearn.autolog()
 
-with mlflow.start_run():
+model = LogisticRegression(max_iter=1000)
 
-    model = LogisticRegression(max_iter=1000)
+model.fit(X_train, y_train)
 
-    model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
 
-    y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+f1 = f1_score(y_test, y_pred)
 
-    accuracy = accuracy_score(y_test, y_pred)
-    precision = precision_score(y_test, y_pred)
-    recall = recall_score(y_test, y_pred)
-    f1 = f1_score(y_test, y_pred)
-
-    print("Accuracy :", accuracy)
-    print("Precision:", precision)
-    print("Recall   :", recall)
-    print("F1 Score :", f1)
+print("Accuracy :", accuracy)
+print("Precision:", precision)
+print("Recall   :", recall)
+print("F1 Score :", f1)
 
 print("Training selesai dan model tercatat di MLflow")
